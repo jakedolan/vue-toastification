@@ -83,6 +83,12 @@ export interface CommonOptions {
    */
   accessibility?: {
     /**
+     * Toast aria-live
+     * 
+     * Accessibility option to for how the message is announced.
+     */
+    toastAriaLive?: string
+    /**
      * Toast accessibility role
      *
      * Accessibility option "role" for screen readers. Defaults to "alert".

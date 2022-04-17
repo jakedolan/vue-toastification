@@ -1,13 +1,16 @@
 <template>
   <div
+    :aria-atomic="true"
+    :aria-live="accessibility.toastAriaLive || 'assertive'" 
     :class="classes"
+    :role="accessibility.toastRole || 'alert'"
     :style="draggableStyle"
     @click="clickHandler"
     @mouseenter="hoverPause"
     @mouseleave="hoverPlay"
   >
     <Icon v-if="icon" :custom-icon="icon" :type="type" />
-    <div :role="accessibility.toastRole || 'alert'" :class="bodyClasses">
+    <div :class="bodyClasses">
       <template v-if="typeof content === 'string'">{{ content }}</template>
       <component
         :is="getVueComponentFromObj(content)"

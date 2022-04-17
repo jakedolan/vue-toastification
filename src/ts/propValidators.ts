@@ -74,7 +74,7 @@ const TRANSITION = {
     type: [Object, String] as PropType<
       NonNullable<PluginOptions["transition"]>
     >,
-    default: `${VT_NAMESPACE}__bounce`,
+    default: `${VT_NAMESPACE}__fade`,
   },
 }
 
@@ -103,6 +103,7 @@ const CORE_TOAST = {
   accessibility: {
     type: Object as PropType<NonNullable<PluginOptions["accessibility"]>>,
     default: () => ({
+      toastAriaLive: "assertive",
       toastRole: "alert",
       closeButtonLabel: "close",
     }),

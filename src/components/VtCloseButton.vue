@@ -37,11 +37,5 @@ export default defineComponent({
       return classes.concat(this.classNames)
     },
   },
-  methods: {
-    handleClick() {
-      console.log('clicky click');
-      this.$emit('click');
-    }
-  }
 })
 </script>
