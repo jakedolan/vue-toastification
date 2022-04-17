@@ -3,7 +3,8 @@
     :is="buttonComponent"
     :aria-label="ariaLabel"
     :class="classes"
-    v-bind="$attrs"
+    v-bind="$attrs" 
+    v-on="$listeners"
   >
     &times;
   </component>
@@ -36,5 +37,11 @@ export default defineComponent({
       return classes.concat(this.classNames)
     },
   },
+  methods: {
+    handleClick() {
+      console.log('clicky click');
+      this.$emit('click');
+    }
+  }
 })
 </script>

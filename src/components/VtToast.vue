@@ -24,7 +24,7 @@
       :class-names="closeButtonClassName"
       :show-on-hover="showCloseButtonOnHover"
       :aria-label="accessibility.closeButtonLabel"
-      @click.stop="closeToast"
+      @closeToast="closeToast"
     />
     <ProgressBar
       v-if="timeout"

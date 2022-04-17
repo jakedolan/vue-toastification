@@ -36,7 +36,7 @@ import VtTransition from "./VtTransition.vue"
 export default defineComponent({
   name: "VueToastification",
   devtools: {
-    hide: true,
+    hide: false,
   },
   components: { Toast, VtTransition },
 
