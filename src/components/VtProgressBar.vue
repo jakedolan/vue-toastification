@@ -4,7 +4,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue"
-
+import { Timer } from '../utils/timer'
 import { VT_NAMESPACE } from "../ts/constants"
 import PROPS from "../ts/propValidators"
 
@@ -15,14 +15,13 @@ export default defineComponent({
 
   // TODO: The typescript compiler is not playing nice with emit types
   // Rollback this change once ts is able to infer emit types
-  // emits: ["close-toast"],
-
+  emits: ["close-toast"],
   data() {
     return {
       hasClass: true,
+      timerRef: null,
     }
   },
-
   computed: {
     style(): {
       animationDuration: string
@@ -42,6 +41,20 @@ export default defineComponent({
   },
 
   watch: {
+    isRunning: {
+      handler(newv, oldv) {
+        this.$nextTick(() => {
+          if (this.timeout) {
+            if (!oldv && newv) {
+              this.timerRef.resume()
+            }
+            if (oldv && !newv) {
+              this.timerRef.pause()
+            }
+          }
+        })
+      }
+    },
     timeout() {
       this.hasClass = false
       this.$nextTick(() => (this.hasClass = true))
@@ -49,19 +62,10 @@ export default defineComponent({
   },
 
   mounted() {
-    this.$el.addEventListener("animationend", this.animationEnded)
-  },
-
-  beforeUnmount() {
-    this.$el.removeEventListener("animationend", this.animationEnded)
-  },
-
-  methods: {
-    animationEnded() {
-      // See TODO on line 16
-      // eslint-disable-next-line vue/require-explicit-emits
-      this.$emit("close-toast")
-    },
+    this.timerRef = new Timer(() => { this.$emit("close-toast") }, this.timeout);
+    if (this.timeout) {
+      this.timerRef.start();
+    }
   },
 })
 </script>
