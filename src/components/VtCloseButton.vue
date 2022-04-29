@@ -4,7 +4,6 @@
     :aria-label="ariaLabel"
     :class="classes"
     v-bind="$attrs" 
-    v-on="$listeners"
   >
     &times;
   </component>
