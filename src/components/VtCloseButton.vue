@@ -19,6 +19,9 @@ import { RenderableToastContent } from "../types"
 export default defineComponent({
   name: "VtCloseButton",
 
+  compatConfig: {
+    MODE: 3,
+  },
   props: PROPS.CLOSE_BUTTON,
 
   computed: {
